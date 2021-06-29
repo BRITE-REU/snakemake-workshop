@@ -18,5 +18,7 @@ if __name__ == '__main__':
     except NameError:
         snakemake = None
     if snakemake is not None:
-        adata = download_data(snakemake.params['dataset'])
-        adata.write(snakemake.output['adata'])
+        # download specified dataset
+        adata = download_data()
+        # write dataset to a specified '.h5ad' file
+        adata.write()

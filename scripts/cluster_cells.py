@@ -33,13 +33,12 @@ if __name__ == '__main__':
     except NameError:
         snakemake = None
     if snakemake is not None:
-        adata = sc.read(snakemake.input['adata'])
-        out = cluster_cells(adata,
-                            k=snakemake.params['k'],
-                            res=snakemake.params['resolution'])
+        # read in data using sc.read()
+        adata = sc.read()
+        out = cluster_cells(adata)
         # writes count matrix to a csv file
-        np.savetxt(snakemake.output['X'], out.X, delimiter=',')
+        np.savetxt(, out.X, delimiter=',')
         # writes cell observation/metadata to csv file
-        out.obs.to_csv(snakemake.output['obs'])
+        out.obs.to_csv()
         # writes gene metadata to csv file
-        out.var.to_csv(snakemake.output['var'])
+        out.var.to_csv()
