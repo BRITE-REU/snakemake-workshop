@@ -30,7 +30,8 @@ def preprocess_cells(adata, min_cells, min_genes, pct_mito, n_hvgs):
     adata.var_names_make_unique()
     if sparse.issparse(adata.X):
         adata.X = adata.X.todense()
-    sc.pp.filter_cells(adata, min_genes=min_genes)
+    if adata.shape[1] > min_genes:
+        sc.pp.filter_cells(adata, min_genes=min_genes)
     sc.pp.filter_genes(adata, min_cells=min_cells)
     # annotate the group of mitochondrial genes as 'mt'
     adata.var['mt'] = adata.var_names.str.startswith('MT-') 
@@ -42,10 +43,13 @@ def preprocess_cells(adata, min_cells, min_genes, pct_mito, n_hvgs):
     adata = adata[adata.obs.pct_counts_mt < pct_mito, :].copy()
     sc.pp.normalize_total(adata)
     sc.pp.log1p(adata)
-    sc.pp.highly_variable_genes(adata,
-                                n_top_genes=n_hvgs,
-                                flavor='seurat',
-                                subset=True)
+    if adata.shape[1] > n_hvgs:
+        sc.pp.highly_variable_genes(adata,
+                                    n_top_genes=n_hvgs,
+                                    flavor='seurat',
+                                    subset=True)
+    else:
+        adata.var['highly_variable'] = True
     return adata
 
 if __name__ == '__main__':

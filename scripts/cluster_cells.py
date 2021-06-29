@@ -19,7 +19,7 @@ def cluster_cells(adata, k, res):
     sc.AnnData
         Clustered dataset with UMAP projections.
     """
-    sc.pp.pca(adata)
+    sc.pp.pca(adata, n_comps=min(adata.shape[1] - 1, 50))
     sc.pp.neighbors(adata, n_neighbors=k)
     sc.tl.louvain(adata, resolution=res)
     sc.tl.umap(adata)
