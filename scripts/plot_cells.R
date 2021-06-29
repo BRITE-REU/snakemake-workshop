@@ -12,4 +12,5 @@ if (exists('snakemake')) {
     var <- read.csv(snakemake@input[['var']], header=TRUE, row.names=1)
 
     p <- plot_cells(obs, x='umap1', y='umap2', color=snakemake.params['louvain'])
+    ## TO DO: Add line to save plot
 }
