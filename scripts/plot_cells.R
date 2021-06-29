@@ -1,4 +1,6 @@
 library(ggplot2)
+
+
 #' Plot cells on UMAP projection
 #'
 #' @param obs (data.frame) cell metadata.
