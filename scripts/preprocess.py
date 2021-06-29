@@ -39,10 +39,10 @@ def preprocess_cells(adata, min_cells, min_genes, pct_mito, n_hvgs):
     adata = adata[adata.obs.pct_counts_mt < pct_mito, :]
     sc.pp.normalize_total(adata)
     sc.pp.log1p(adata)
-    sc.pp.highly_variable(adata,
-                          n_top_genes=n_hvgs,
-                          flavor='seurat_v3',
-                          subset=True)
+    sc.pp.highly_variable_genes(adata,
+                                n_top_genes=n_hvgs,
+                                flavor='seurat',
+                                subset=True)
     return adata
 
 if __name__ == '__main__':
@@ -52,10 +52,10 @@ if __name__ == '__main__':
         snakemake = None
     if snakemake is not None:
         # read in data
-        adata = sc.read(snakemake.input)
-        out = preprocess_data(adata,
-                              snakemake.params['min_cells'],
-                              snakemake.params['min_genes'],
-                              snakemake.params['pct_mito'],
-                              snakemake.params['n_hvgs'])
-        adata.write(snakemake.output)
+        adata = sc.read(snakemake.input['adata'])
+        out = preprocess_cells(adata,
+                               snakemake.params['min_cells'],
+                               snakemake.params['min_genes'],
+                               snakemake.params['pct_mito'],
+                               snakemake.params['n_hvgs'])
+        adata.write(snakemake.output['adata'])
