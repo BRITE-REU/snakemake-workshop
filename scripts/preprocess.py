@@ -27,6 +27,7 @@ def preprocess_cells(adata, min_cells, min_genes, pct_mito, n_hvgs):
         Cleaned dataset.
     """
     adata.var_names_make_unique()
+    adata.X = adata.X.todense()
     sc.pp.filter_cells(adata, min_genes=min_genes)
     sc.pp.filter_genes(adata, min_cells=min_cells)
     # annotate the group of mitochondrial genes as 'mt'
@@ -36,7 +37,7 @@ def preprocess_cells(adata, min_cells, min_genes, pct_mito, n_hvgs):
                                percent_top=None,
                                log1p=False,
                                inplace=True)
-    adata = adata[adata.obs.pct_counts_mt < pct_mito, :]
+    adata = adata[adata.obs.pct_counts_mt < pct_mito, :].copy()
     sc.pp.normalize_total(adata)
     sc.pp.log1p(adata)
     sc.pp.highly_variable_genes(adata,
