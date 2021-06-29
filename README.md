@@ -11,7 +11,7 @@ In this workshop you will use snakemake to create a workflow to download, proces
 3. Run each line of the [install script](install.sh) line-by-line on the command line
     - Check: Is the workshop environment activated? (try 'conda info')
 4. Make the pipeline work
-    - Hint: Navigate to the **Issues** board on your forked repository
+    - Hint: Navigate to the **Issues** board on your forked repository. The issues are numbered in the order in which you should work on them. When you finish an issue, mark it as closed. You can then view your progress in the **Projects** board.
     - Hint: Use git to commit and push your changes as you work
 
 TODO:
