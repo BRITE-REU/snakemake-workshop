@@ -1,6 +1,7 @@
 import scanpy as sc
 
 def download_data(dataset):
+    """Download and return specified dataset."""
     if dataset == 'pbmc3k':
         adata = scanpy.datasets.pbmc3k()
     elif dataset == 'paul':
@@ -9,6 +10,7 @@ def download_data(dataset):
         adata = scanpy.datasets.moignard15()
     else:
         raise ValueError(f"Unsupported dataset {dataset}.")
+    return adata
 
 if __name__ == '__main__':
     try:
