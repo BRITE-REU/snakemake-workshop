@@ -1,10 +1,14 @@
 configfile: "files/config.yaml"
 
+rule all:
+    "figures/pbmc3k/clusters.png"
+
 # this should call the download_data.py Python script to download data.
 # You will need to tell the script which dataset you want to download, and the
 # file name to save the dataset under. The expected extension for the output file
 # is an '.h5ad' file. In snakemake, it is good practice to write data files
 # produced by each rule to unique directories.
+# allowable: paul, moignard, pbmc3k
 rule download_data:
     params:
         dataset="pbmc3k"
@@ -17,8 +21,10 @@ rule preprocess_data:
     input:
         "data/raw/pbmc3k.h5ad"
     params:
-        min_cells=3,
-        min_genes=200,
+        min_cells=config['preprocess']['min_cells'],
+        min_genes=config['preprocess']['min_genes'],
+        pct_mito=config['preprocess']['pct_mito'],
+        n_hvgs=config['preprocess']['n_hvgs']
     output:
         "data/processed/pbmc3k.h5ad"
     script:
@@ -28,14 +34,14 @@ rule cluster_cells:
     input:
         "data/processed/pbmc3k.h5ad"
     params:
-        k=15,
-        resolution=1
+        k=config['cluster']['k'],
+        resolution=config['cluster']['resolution']
     output:
         X="data/clustered/X.csv",
         obs="data/clustered/obs.csv",
         var="data/clustered/var.csv"
     script:
-        "scripts/clsuter_cells.py"
+        "scripts/cluster_cells.py"
 
 rule plot_clusters:
     input:
@@ -45,4 +51,6 @@ rule plot_clusters:
     params:
         color="louvain"
     output:
-        report()
+        report('figures/pbmc3k/clusters.png')
+    script:
+        "scripts/plot_cells.R"
