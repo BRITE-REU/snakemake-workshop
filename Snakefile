@@ -33,7 +33,7 @@ rule preprocess_data:
 
 rule cluster_cells:
     input:
-        "data/processed/pbmc3k.h5ad"
+        adata="data/processed/pbmc3k.h5ad"
     params:
         k=config['cluster']['k'],
         resolution=config['cluster']['resolution'],
