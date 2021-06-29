@@ -52,6 +52,8 @@ rule plot_clusters:
     params:
         color="louvain"
     output:
-        report('figures/pbmc3k/clusters.png')
+        png=report('figures/pbmc3k/clusters.png',
+                   caption='report/clusters.rst',
+                   category='Clustering')
     script:
         "scripts/plot_cells.R"
