@@ -16,9 +16,9 @@ In this workshop you will use snakemake to create a workflow to download, proces
 
 TODO:
 
-1. Finish Pipeline (no R)
-2. Test Pipeline
-3. Generalize / finalize pipeline for multiple datasets
+1. ~~Finish Pipeline (no R)~~
+2. ~~Test Pipeline~~
+3. ~~Generalize / finalize pipeline for multiple datasets~~
 5. Remove everything expect rule names + descriptions from Snakemake
 6. Remove all snakemake handling in Python + R Scripts
 7. Create "TODO" list for workshop using issues in github
@@ -28,5 +28,5 @@ TODO:
   - Generalize rules to handle multipe wildcards
   - Generate report 
 8. Merge branch to master. 
-  - Previous commit now has solutions
+  - ~~Previous commit now has solutions~~
   - Current commit now has issues detaliing what students should do, they can fork ezpz
