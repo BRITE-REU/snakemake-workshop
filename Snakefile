@@ -20,14 +20,14 @@ rule download_data:
 
 rule preprocess_data:
     input:
-        "data/raw/pbmc3k.h5ad"
+        adata="data/raw/pbmc3k.h5ad"
     params:
         min_cells=config['preprocess']['min_cells'],
         min_genes=config['preprocess']['min_genes'],
         pct_mito=config['preprocess']['pct_mito'],
         n_hvgs=config['preprocess']['n_hvgs']
     output:
-        "data/processed/pbmc3k.h5ad"
+        adata="data/processed/pbmc3k.h5ad"
     script:
         "scripts/preprocess.py"
 
