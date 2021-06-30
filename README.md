@@ -5,6 +5,10 @@ Worklflow managers are good mkay
 In this workshop you will use snakemake to create a workflow to download, process, and plot single-cell data. (sea urchins)
 
 ## Getting Started
+0. Confirm that you have read through the pre-workshop material and are familiar with the following concepts (if not, please do this now):
+    - git status, git add, git commit, git pull, git push
+    - what is a Snakefile
+    - Open up the snakemake documentation and feel free to reference this as you work: <https://snakemake.readthedocs.io/en/stable/index.html>
 1. Log on to the SCC
     - Hint: Start an interactive node
 2. Fork the workshop repository to your own account: <https://github.com/BRITE-REU/snakemake-workshop>
@@ -15,7 +19,9 @@ In this workshop you will use snakemake to create a workflow to download, proces
     - Hint: Use git to commit and push your changes as you work
 
 ## Some Hints
-- To test your work as you go, we suggest you comment out all rules that follow the current rule you are implementing, as well as the rule 'all'. Then when you call the Snakfile, specify which output file you want to create. 
+- To test your work as you go, we suggest you comment out all rules that follow the current rule you are implementing. Then when you call the Snakfile, specify which output file you want to create. 
+
+____
 
 TODO:
 
@@ -24,12 +30,12 @@ TODO:
 3. ~~Generalize / finalize pipeline for multiple datasets~~
 5. ~~Remove everything expect rule names + descriptions from Snakemake~~
 6. ~~Remove all snakemake handling in Python + R Scripts~~
-7. Create "TODO" list for workshop using issues in github
+7. ~~Create "TODO" list for workshop using issues in github~~
   - Link to workshop project for automated khan ban board
-  - Start issues as only implementing rule for single dataset (pbmc3k)
-  - Introduce config file to hold parameters
-  - Generalize rules to handle multipe wildcards
-  - Generate report 
+  ~~- Start issues as only implementing rule for single dataset (pbmc3k)~~
+  ~~- Introduce config file to hold parameters~~
+  ~~- Generalize rules to handle multipe wildcards~~
+  ~~- Generate report~~
 8. Merge branch to master. 
   - ~~Previous commit now has solutions~~
   - ~~Current commit now has issues detaliing what students should do, they can fork ezpz~~
