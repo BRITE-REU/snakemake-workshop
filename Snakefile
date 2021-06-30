@@ -9,28 +9,24 @@
 # produced by each rule to unique directories.
 # allowable: paul, moignard, pbmc3k
 rule download_data:
-    script:
-        "scripts/download_data.py"
 
-# rule to preprocess data
+# This rule should preprocess downloaded data by calling the `preprocess.py`
+# Python script.
 # the rule should read in the raw dataset, and filter cells + genes based off
 # of provided parameters as explained in the github issue. The rule should write
 # the newly processed data to a new `.h5ad` file. 
 rule preprocess_data:
-    script:
-        "scripts/preprocess.py"
 
-# rule to cluster cells using louvain community detection
+
+# rThis rule should cluster cells using the `cluster_cells.py` script.
 # rule should read in preprocessed data, and clsuter cells according to user-
 # provided parameters, k and resolution. The rule should produce 3 output files
 # as csvs: a count matrix, a cell metadata table, and a gene metadata table.
 rule cluster_cells:
-    script:
-        "scripts/cluster_cells.py"
 
-# rule to plot clusters on UMAP projections using ggplot
+
+# This rule should plot clusters on UMAP projections using ggplot and the 
+# plot_cells.R script. 
 # the rule should read in the previously generated csvs, color cells according
 # to values in a user-specified column, and create a .png file containing the plot
 rule plot_clusters:
-    script:
-        "scripts/plot_cells.R"
