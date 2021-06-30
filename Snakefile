@@ -12,13 +12,13 @@ rule download_data:
 
 # This rule should preprocess downloaded data by calling the `preprocess.py`
 # Python script.
-# the rule should read in the raw dataset, and filter cells + genes based off
+# The rule should read in the raw dataset, and filter cells + genes based off
 # of provided parameters as explained in the github issue. The rule should write
 # the newly processed data to a new `.h5ad` file. 
 rule preprocess_data:
 
 
-# rThis rule should cluster cells using the `cluster_cells.py` script.
+# This rule should cluster cells using the `cluster_cells.py` script.
 # rule should read in preprocessed data, and clsuter cells according to user-
 # provided parameters, k and resolution. The rule should produce 3 output files
 # as csvs: a count matrix, a cell metadata table, and a gene metadata table.
