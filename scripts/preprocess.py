@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import scanpy as sc
+from scipy import sparse
 
 def preprocess_cells(adata, min_cells, min_genes, pct_mito, n_hvgs):
     """
@@ -27,7 +28,10 @@ def preprocess_cells(adata, min_cells, min_genes, pct_mito, n_hvgs):
         Cleaned dataset.
     """
     adata.var_names_make_unique()
-    sc.pp.filter_cells(adata, min_genes=min_genes)
+    if sparse.issparse(adata.X):
+        adata.X = adata.X.todense()
+    if adata.shape[1] > min_genes:
+        sc.pp.filter_cells(adata, min_genes=min_genes)
     sc.pp.filter_genes(adata, min_cells=min_cells)
     # annotate the group of mitochondrial genes as 'mt'
     adata.var['mt'] = adata.var_names.str.startswith('MT-') 
@@ -36,13 +40,16 @@ def preprocess_cells(adata, min_cells, min_genes, pct_mito, n_hvgs):
                                percent_top=None,
                                log1p=False,
                                inplace=True)
-    adata = adata[adata.obs.pct_counts_mt < pct_mito, :]
+    adata = adata[adata.obs.pct_counts_mt < pct_mito, :].copy()
     sc.pp.normalize_total(adata)
     sc.pp.log1p(adata)
-    sc.pp.highly_variable_genes(adata,
-                                n_top_genes=n_hvgs,
-                                flavor='seurat',
-                                subset=True)
+    if adata.shape[1] > n_hvgs:
+        sc.pp.highly_variable_genes(adata,
+                                    n_top_genes=n_hvgs,
+                                    flavor='seurat',
+                                    subset=True)
+    else:
+        adata.var['highly_variable'] = True
     return adata
 
 if __name__ == '__main__':
@@ -52,10 +59,8 @@ if __name__ == '__main__':
         snakemake = None
     if snakemake is not None:
         # read in data
-        adata = sc.read(snakemake.input['adata'])
-        out = preprocess_cells(adata,
-                               snakemake.params['min_cells'],
-                               snakemake.params['min_genes'],
-                               snakemake.params['pct_mito'],
-                               snakemake.params['n_hvgs'])
-        adata.write(snakemake.output['adata'])
+        adata = sc.read()
+        # preprocess cells + genes
+        out = preprocess_cells(adata)
+        # write processed data to h5ad file
+        adata.write()
