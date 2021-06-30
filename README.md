@@ -14,6 +14,9 @@ In this workshop you will use snakemake to create a workflow to download, proces
     - Hint: Navigate to the **Issues** board on your forked repository. The issues are numbered in the order in which you should work on them. When you finish an issue, mark it as closed. You can then view your progress in the **Projects** board.
     - Hint: Use git to commit and push your changes as you work
 
+## Some Hints
+- To test your work as you go, we suggest you comment out all rules that follow the current rule you are implementing, as well as the rule 'all'. Then when you call the Snakfile, specify which output file you want to create. 
+
 TODO:
 
 1. Finish Pipeline (no R)
