@@ -1,8 +1,10 @@
 # snakemake-workshop
-Worklflow managers are good mkay
+This workshop should serve both as an introduction to `Snakemake` as well as `git` + `GitHub`. 
+
+[readthedocs](https://programming-workshops.readthedocs.io/en/latest/workshops/04_git_cv/04_version_control_with_git_workshop.html)
 
 ## Workshop Overview
-In this workshop you will use snakemake to create a workflow to download, process, and plot single-cell data. (sea urchins)
+In this workshop you will use snakemake to create a workflow to download, process, and plot single-cell data.
 
 ## Getting Started
 0. Confirm that you have read through the pre-workshop material and are familiar with the following concepts (if not, please do this now):
@@ -20,22 +22,3 @@ In this workshop you will use snakemake to create a workflow to download, proces
 
 ## Some Hints
 - To test your work as you go, we suggest you comment out all rules that follow the current rule you are implementing. Then when you call the Snakfile, specify which output file you want to create. 
-
-____
-
-TODO:
-
-1. ~~Finish Pipeline (no R)~~
-2. ~~Test Pipeline~~
-3. ~~Generalize / finalize pipeline for multiple datasets~~
-5. ~~Remove everything expect rule names + descriptions from Snakemake~~
-6. ~~Remove all snakemake handling in Python + R Scripts~~
-7. ~~Create "TODO" list for workshop using issues in github~~
-  - Link to workshop project for automated khan ban board
-  ~~- Start issues as only implementing rule for single dataset (pbmc3k)~~
-  ~~- Introduce config file to hold parameters~~
-  ~~- Generalize rules to handle multipe wildcards~~
-  ~~- Generate report~~
-8. Merge branch to master. 
-  - ~~Previous commit now has solutions~~
-  - ~~Current commit now has issues detaliing what students should do, they can fork ezpz~~
