@@ -28,8 +28,8 @@ def preprocess_cells(adata, min_cells, min_genes, pct_mito, n_hvgs):
         Cleaned dataset.
     """
     adata.var_names_make_unique()
-    if sparse.issparse(adata.X):
-        adata.X = adata.X.todense()
+    # if sparse.issparse(adata.X):
+    #     adata.X = adata.X.todense()
     if adata.shape[1] > min_genes:
         sc.pp.filter_cells(adata, min_genes=min_genes)
     sc.pp.filter_genes(adata, min_cells=min_cells)
