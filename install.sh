@@ -1,5 +1,5 @@
 module load miniconda
-conda create --name workshop seaborn scikit-learn statsmodels numba pytables
+conda create --name workshop
 conda activate workshop
-conda install -c conda-forge igraph python-igraph leidenalg imagemagick 
-pip install scanpy snakemake scikit-misc louvain jinja2 pygraphviz pygments
+conda install -c conda-forge scanpy pandas r-ggplot2 igraph python-igraph louvain
+conda install -c bioconda snakemake
